@@ -2,12 +2,12 @@
   "name": "ai-project-nodejs",
   "version": "1.0.0",
   "description": "Bulid AI project with node.js, OpenAI, LangChain, Vector dBs, HubggingFace and TypeScript",
-  "main": "src/index.js",
-  "type" : "module",
-
+  "main": "src/index.ts",
+  "type": "commonjs",
   "scripts": {
-    "dev": "nodemon --env-file=.env src/index.js",
-    "start": "node src/index.js"
+    "dev": "nodemon ts-node-esm src/index.ts",
+    "build": "tsc",
+    "start": "nodemon dist/index.js"
   },
   "author": "Priyanka Agarwal",
   "license": "ISC",
@@ -15,5 +15,10 @@
     "dotenv": "^17.2.1",
     "nodemon": "^3.1.10",
     "openai": "^5.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
