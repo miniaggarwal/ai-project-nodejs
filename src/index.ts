@@ -23,6 +23,13 @@ const main = async (): Promise<void> => {
     model: "gpt-4.1",
     messages: [
       {
+        //to make the output in more sequenced way
+        role : "system",
+        content : `You respond to the greetings in the beginning in a friendly manner. 
+        Always respond in JSON Format, like this : {"greetings" : "greetings here",
+          "Result" : "result of prompt here}`
+      },
+      {
         role: "user",
         content: prompt,
       },
