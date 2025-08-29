@@ -4,3 +4,6 @@
 ### 1. OpenAI Setup
         - OpenAI keu
 ### 2. npm Project
+
+### 3. Setup of TypeScript
+
