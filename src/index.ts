@@ -1,7 +1,9 @@
 import * as dotenv from "dotenv";
+import { encoding_for_model } from "tiktoken";
 dotenv.config();
 
 import OpenAI from "openai";
+import { log } from "console";
 
 // Define type for environment variable
 const OPENAI_KEY: string = process.env.OPENAI_KEY ?? "";
@@ -30,6 +32,21 @@ const main = async (): Promise<void> => {
   // Handle response safely
   console.log(response.choices?.[0]?.message?.content ?? "No response received");
 };
+
+const encodePrompt = (prompt : string) => {
+  // Load encoding for a specific model
+  const encoder = encoding_for_model("gpt-4.1");
+  // Encode the text → returns an array of token IDs (numbers)
+  const tokens = encoder.encode(prompt);
+
+  console.log(tokens);
+  //total numbers of token
+  console.log("Number of tokens:", tokens.length);
+
+
+}
+
+encodePrompt("Singapore is a small island city-state located in Southeast Asia. Its total land area is approximately **733 square kilometers** (about **283 square miles**). Despite its small size, Singapore is highly developed and densely populated, with over 5.5 million residents as of 2023. ");
 
 // Run main
 main().catch((error) => {
