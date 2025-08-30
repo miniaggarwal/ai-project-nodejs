@@ -16,7 +16,7 @@ const openai = new OpenAI({
 // Define main function with async/await
 const main = async (): Promise<void> => {
   // Define the prompt
-  const prompt: string = "How big is Singapore?";
+  const prompt: string = "Give me a detailed overview of India";
 
   // Send API request
   const response = await openai.chat.completions.create({
@@ -30,14 +30,29 @@ const main = async (): Promise<void> => {
           "Result" : "result of prompt here}`
       },
       {
+        //User question
         role: "user",
         content: prompt,
       },
     ],
+    max_tokens : 1000,
+    temperature : 1,
+    top_p : 0.9,
+    //no of choices
+    n : 2, 
+    frequency_penalty : 1.5,
+
+
+
   });
 
-  // Handle response safely
+  //Assistant answer
+  //for n = 1
   console.log(response.choices?.[0]?.message?.content ?? "No response received");
+  
+  //for n =2 
+  console.log(response.choices?.[1]?.message?.content ?? "No response received");
+
 };
 
 const encodePrompt = (prompt : string) => {
@@ -59,43 +74,3 @@ encodePrompt("Singapore is a small island city-state located in Southeast Asia. 
 main().catch((error) => {
   console.error("Error:", error);
 });
-
-
-
-// // const dotenv = require("dotenv")
-// import * as dotenv from "dotenv";
-// dotenv.config();
-
-// import OpenAI = require ("openai"); 
-// // const OpenAI = require("openai");
-
-// // console.log(process.env.OPENAI_KEY);
- 
-// //Create an instance of OpenAI class
-// const openai = new OpenAI({
-//     apiKey : process.env.OPENAI_KEY, 
-// });
-
-// const main = async () => {
-
-//     //Define the prompt
-//     const prompt = "How big is Singapore?";
-
-//     //send API request
-//     const response = await openai.chat.completions.create(
-//         {
-//             model: "gpt-4.1",
-//             messages : [{
-//                 role : "user",
-//                 content: prompt,
-//             },
-//             ]
-//         }
-//     )
-// console.log(response.choices?.[0]?.message?.content);
-
-// };
-
-// main();
-
-
